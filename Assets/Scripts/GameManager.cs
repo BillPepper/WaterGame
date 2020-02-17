@@ -6,18 +6,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public PlayerController Player;
+    public HealthController Health;
 
     private bool gameIsStarted;
     private bool gameIsLost;
 
     void Start()
     {
-        
+        this.UpdateHealth();
     }
 
     // Update is called once per frame
     void Update()
     {
+        this.UpdateHealth();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             this.GameOver();
@@ -29,6 +31,11 @@ public class GameManager : MonoBehaviour
         {
             this.GameOver();
         }
+    }
+
+    void UpdateHealth()
+    {
+        Health.SetHealth(Player.getHealth());
     }
 
     void StartGame()

@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private void hurt()
     {
         this.health--;
-        if (health < 1)
+        if (this.health < 1)
         {
             this.isDead = true;
             Debug.Log("Player died");
@@ -64,5 +64,10 @@ public class PlayerController : MonoBehaviour
     public bool GetIsDead()
     {
         return this.isDead;
+    }
+
+    public int getHealth()
+    {
+        return this.health;
     }
 }
