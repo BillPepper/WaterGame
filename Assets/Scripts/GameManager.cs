@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             this.closestEnemyText.GetComponent<Text>().text = NextEnemy.name;
         }
 
-        if (Player.GetIsFinished() || Player.GetIsDead()) // seperate these
+        if (Player.IsFinished() || Player.IsDead()) // seperate these
         {
             this.GameOver();
         }
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
     void StartGame()
     {
         this.gameIsStarted = true;
-        Player.SetIsWalking(true);
+        Player.SetWalking(true);
     }
 
     void GameOver()

@@ -7,13 +7,13 @@ public class PlayerController : MonoBehaviour
     public float speed = 2f;
     public int health = 5;
 
-    private bool isWalking = false;
-    private bool isDead = false;
-    private bool isFinished = false;
+    private bool walking = false;
+    private bool dead = false;
+    private bool finished = false;
 
     public void FixedUpdate()
     {
-        if (this.isWalking)
+        if (this.walking)
         {
             this.transform.position = new Vector2(this.transform.position.x + speed * Time.fixedDeltaTime, this.transform.position.y);
         }
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
         if (collisionObjTag == "LevelEnd")
         {
-            this.isFinished = true;
+            this.finished = true;
             Debug.Log("Player finished level");
         }
 
@@ -41,29 +41,29 @@ public class PlayerController : MonoBehaviour
         this.health--;
         if (this.health < 1)
         {
-            this.isDead = true;
+            this.dead = true;
             Debug.Log("Player died");
         }
     }
 
-    public bool GetIsWalking()
+    public bool IsWalking()
     {
-        return this.isWalking;
+        return this.walking;
     }
 
-    public void SetIsWalking(bool state)
+    public void SetWalking(bool state)
     {
-        this.isWalking = state;
+        this.walking = state;
     }
 
-    public bool GetIsFinished()
+    public bool IsFinished()
     {
-        return this.isFinished;
+        return this.finished;
     }
 
-    public bool GetIsDead()
+    public bool IsDead()
     {
-        return this.isDead;
+        return this.dead;
     }
 
     public int getHealth()
