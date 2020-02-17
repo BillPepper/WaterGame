@@ -40,6 +40,6 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         this.gameIsStarted = false;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("GameOver");
     }
 }
