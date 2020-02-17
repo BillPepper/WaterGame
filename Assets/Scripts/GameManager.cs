@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)){
             this.StartGame();
         }
-        if (Player.GetIsFinished())
+        if (Player.GetIsFinished() || Player.GetIsDead()) // seperate these
         {
             this.GameOver();
         }

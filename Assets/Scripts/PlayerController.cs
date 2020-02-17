@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 2f;
+    public int health = 5;
 
     private bool isWalking = false;
     private bool isDead = false;
@@ -21,11 +22,27 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         string collisionObjTag = collision.gameObject.tag;
-        Debug.Log("Collided: " + collisionObjTag);
 
         if (collisionObjTag == "LevelEnd")
         {
             this.isFinished = true;
+            Debug.Log("Player finished level");
+        }
+
+        if (collisionObjTag == "Enemy")
+        {
+            this.hurt();
+            Debug.Log("Ouch! " + this.health.ToString() + " lives remaining");
+        }
+    }
+
+    private void hurt()
+    {
+        this.health--;
+        if (health < 1)
+        {
+            this.isDead = true;
+            Debug.Log("Player died");
         }
     }
 
@@ -42,5 +59,10 @@ public class PlayerController : MonoBehaviour
     public bool GetIsFinished()
     {
         return this.isFinished;
+    }
+
+    public bool GetIsDead()
+    {
+        return this.isDead;
     }
 }
