@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Ouch!");
+    }
+
     public bool SetIsWalking()
     {
         return this.isWalking;

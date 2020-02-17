@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,9 +18,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)){
-            this.gameIsStarted = true;
-            Player.SetIsWalking(true);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            this.GameOver();
         }
+        if (Input.GetKeyDown(KeyCode.Space)){
+            this.StartGame();
+        }
+    }
+
+    void StartGame()
+    {
+        this.gameIsStarted = true;
+        Player.SetIsWalking(true);
+    }
+
+    void GameOver()
+    {
+        this.gameIsStarted = false;
+        SceneManager.LoadScene(1);
     }
 }
