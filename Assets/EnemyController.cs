@@ -7,10 +7,13 @@ public class EnemyController : MonoBehaviour
 {
     private Rigidbody2D ownRigidbody;
     private BoxCollider2D ownBoxCollider;
+
+    private bool alive;
     private void Start()
     {
         this.ownRigidbody = GetComponent<Rigidbody2D>();
         this.ownBoxCollider = GetComponent<BoxCollider2D>();
+        this.alive = true;
     }
 
     private void Update()
@@ -23,19 +26,20 @@ public class EnemyController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // when the player collides with the enemy, it does not die but deactivates
-        this.Deactivate(); 
-    }
-
-    void Deactivate()
-    {
-        ownBoxCollider.enabled = false;
+        this.Die();
     }
 
     public void Die()
     {
         Debug.Log("Enemy" + this.name + " died");
-        this.ownRigidbody.AddForce(new Vector2(500, 100));
+        this.alive = false;
+        this.tag = "Dead";
+        this.ownRigidbody.AddForce(new Vector2(50, 100));
         this.ownRigidbody.gravityScale = 1;
+    }
+
+    public bool isAlive()
+    {
+        return this.alive;
     }
 }

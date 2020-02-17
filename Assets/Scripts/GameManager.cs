@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public PlayerController Player;
     public HealthController Health;
 
+    // DEBUG
+    public GameObject closestEnemyText;
+
     private GameObject NextEnemy;
+    private EnemyController NextEnemyController;
 
     private bool gameIsStarted;
     private bool gameIsLost;
@@ -16,35 +21,56 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         this.UpdateHealth();
+        
     }
 
     void Update()
     {
         this.UpdateHealth();
 
-        if (!this.NextEnemy)
+        if (this.NextEnemy)
         {
-            this.NextEnemy = FindClosestEnemy();
+            NextEnemyController = NextEnemy.GetComponent<EnemyController>();
+            if (!this.NextEnemyController.isAlive())
+            {
+                // Redundant!
+                this.NextEnemy = null;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!this.NextEnemy && this.GetEnemyCount() > 0)
         {
-            this.GameOver();
+            this.NextEnemy = FindClosestEnemy();
+            this.closestEnemyText.GetComponent<Text>().text = NextEnemy.name;
         }
-        if (Input.GetKeyDown(KeyCode.Space)){
-            this.StartGame();
-        }
+
         if (Player.GetIsFinished() || Player.GetIsDead()) // seperate these
         {
             this.GameOver();
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        this.handleInputs();
+    }
+
+    void handleInputs() { 
+        if (Input.GetKeyDown(KeyCode.K) && NextEnemy)
         {
             NextEnemy.GetComponent<EnemyController>().Die();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            this.GameOver();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.StartGame();
+        }
     }
 
+    int GetEnemyCount()
+    {
+        return GameObject.FindGameObjectsWithTag("Enemy").Length;
+    }
     GameObject FindClosestEnemy()
     {
         Debug.Log("searching nearest enemy");
@@ -64,7 +90,6 @@ public class GameManager : MonoBehaviour
                 distance = curDistance;
             }
         }
-        Debug.Log("nearest enemy is " + closest.name);
         return closest;
     }
 
