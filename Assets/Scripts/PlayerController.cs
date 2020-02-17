@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 2f;
     public int health = 5;
+    public float perception = 8f;
 
     private bool walking = false;
     private bool dead = false;
@@ -24,13 +25,11 @@ public class PlayerController : MonoBehaviour
             this.transform.position = new Vector2(this.transform.position.x + speed * Time.fixedDeltaTime, this.transform.position.y);
         }
 
-        Vector3 start = Vector3.zero;
-        Vector3 direction = Vector3.forward;
-        RaycastHit hit;
-        if (Physics.Raycast(start, direction, out hit))
-        {
-            hit.collider.gameObject.SetActive(false);
-        }
+        RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(this.transform.position.x + 0.7f, this.transform.position.y - 0.5f), this.transform.right, this.perception);
+
+        // this triggers all over, not cool
+        this.ShowCombo(!!hitInfo);
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -60,9 +59,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ShowCombo()
+    public void ShowCombo(bool s)
     {
-        this.ComboBubble.enabled = true;
+        // this should not be set by bool, cause it is not in enemy controller
+        this.ComboBubble.enabled = s;
     }
 
     public bool IsWalking()

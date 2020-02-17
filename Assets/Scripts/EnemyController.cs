@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
         this.ComboBubble.enabled = false;
         this.alive = false;
         this.tag = "Dead";
-        this.ownRigidbody.AddForce(new Vector2(50, 100));
+        this.ownRigidbody.AddForce(new Vector2(-50, 100));
         this.ownRigidbody.gravityScale = 1;
     }
 
