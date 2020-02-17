@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     // DEBUG
     public GameObject closestEnemyText;
+    public GameObject EnemyDistanceText;
 
     private GameObject NextEnemy;
     private EnemyController NextEnemyController;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         if (this.NextEnemy)
         {
             NextEnemyController = NextEnemy.GetComponent<EnemyController>();
+            EnemyDistanceText.GetComponent<Text>().text = "EnemyDistance: " + this.GetDistanceToNextEnemy().ToString();
             if (!this.NextEnemyController.isAlive())
             {
                 this.Score.addScore(100); // should not score when player was hit
@@ -66,6 +68,11 @@ public class GameManager : MonoBehaviour
         {
             this.StartGame();
         }
+    }
+
+    float GetDistanceToNextEnemy()
+    {
+        return NextEnemy.transform.position.x - Player.transform.position.x;
     }
 
     int GetEnemyCount()
