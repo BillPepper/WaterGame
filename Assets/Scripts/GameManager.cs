@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public PlayerController Player;
     public HealthController Health;
+    public ScoreController Score;
 
     // DEBUG
     public GameObject closestEnemyText;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
             NextEnemyController = NextEnemy.GetComponent<EnemyController>();
             if (!this.NextEnemyController.isAlive())
             {
-                // Redundant!
+                this.Score.addScore(100); // should not score when player was hit
                 this.NextEnemy = null;
             }
         }
