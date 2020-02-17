@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 2f;
 
     private bool isWalking = false;
+    private bool isDead = false;
+    private bool isFinished = false;
 
     public void FixedUpdate()
     {
@@ -18,10 +20,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Ouch!");
+        string collisionObjTag = collision.gameObject.tag;
+        Debug.Log("Collided: " + collisionObjTag);
+
+        if (collisionObjTag == "LevelEnd")
+        {
+            this.isFinished = true;
+        }
     }
 
-    public bool SetIsWalking()
+    public bool GetIsWalking()
     {
         return this.isWalking;
     }
@@ -29,5 +37,10 @@ public class PlayerController : MonoBehaviour
     public void SetIsWalking(bool state)
     {
         this.isWalking = state;
+    }
+
+    public bool GetIsFinished()
+    {
+        return this.isFinished;
     }
 }

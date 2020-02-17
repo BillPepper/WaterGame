@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)){
             this.StartGame();
         }
+        if (Player.GetIsFinished())
+        {
+            this.GameOver();
+        }
     }
 
     void StartGame()
