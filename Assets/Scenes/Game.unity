@@ -1421,6 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063ea70bbe0f16744ba54161ebecd541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownText: {fileID: 0}
 --- !u!114 &1843522661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,6 +1596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 585207682}
   Health: {fileID: 212969672}
+  Score: {fileID: 1843522660}
   closestEnemyText: {fileID: 694017655}
 --- !u!4 &1906991019
 Transform:
