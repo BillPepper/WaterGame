@@ -20,7 +20,6 @@ public class EnemyController : MonoBehaviour
     {
         if (this.transform.position.y < -10)
         {
-            Debug.Log("Destroyed enemy");
             Destroy(this.gameObject);
         }
     }
@@ -36,7 +35,6 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Enemy" + this.name + " died");
         this.ComboBubble.enabled = false;
         this.alive = false;
         this.tag = "Dead";

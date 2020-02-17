@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         {
             NextEnemyController = NextEnemy.GetComponent<EnemyController>();
             EnemyDistanceText.GetComponent<Text>().text = "EnemyDistance: " + this.GetDistanceToNextEnemy().ToString();
+
             if (!this.NextEnemyController.isAlive())
             {
                 this.Score.addScore(100); // should not score when player was hit
@@ -52,10 +53,10 @@ public class GameManager : MonoBehaviour
             this.GameOver();
         }
 
-        this.handleInputs();
+        this.HandleInputs();
     }
 
-    void handleInputs() { 
+    void HandleInputs() { 
         if (Input.GetKeyDown(KeyCode.K) && NextEnemy)
         {
             NextEnemy.GetComponent<EnemyController>().Die();
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     float GetDistanceToNextEnemy()
     {
+        // yea, dont use this other than for debug... there needs to be a raycast
         return NextEnemy.transform.position.x - Player.transform.position.x;
     }
 
@@ -81,8 +83,6 @@ public class GameManager : MonoBehaviour
     }
     GameObject FindClosestEnemy()
     {
-        Debug.Log("searching nearest enemy");
-
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject closest = null;
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateHealth()
     {
-        Health.SetHealth(Player.getHealth());
+        Health.SetHealth(Player.GetHealth());
     }
 
     void StartGame()

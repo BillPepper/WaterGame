@@ -10,12 +10,26 @@ public class PlayerController : MonoBehaviour
     private bool walking = false;
     private bool dead = false;
     private bool finished = false;
+    private SpriteRenderer ComboBubble;
+
+    public void Start()
+    {
+        this.ComboBubble = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
+    }
 
     public void FixedUpdate()
     {
         if (this.walking)
         {
             this.transform.position = new Vector2(this.transform.position.x + speed * Time.fixedDeltaTime, this.transform.position.y);
+        }
+
+        Vector3 start = Vector3.zero;
+        Vector3 direction = Vector3.forward;
+        RaycastHit hit;
+        if (Physics.Raycast(start, direction, out hit))
+        {
+            hit.collider.gameObject.SetActive(false);
         }
     }
 
@@ -31,19 +45,24 @@ public class PlayerController : MonoBehaviour
 
         if (collisionObjTag == "Enemy")
         {
-            this.hurt();
+            this.Hurt(1);
             Debug.Log("Ouch! " + this.health.ToString() + " lives remaining");
         }
     }
 
-    private void hurt()
+    private void Hurt(int h)
     {
-        this.health--;
+        this.health -= h;
         if (this.health < 1)
         {
             this.dead = true;
             Debug.Log("Player died");
         }
+    }
+
+    public void ShowCombo()
+    {
+        this.ComboBubble.enabled = true;
     }
 
     public bool IsWalking()
@@ -66,7 +85,7 @@ public class PlayerController : MonoBehaviour
         return this.dead;
     }
 
-    public int getHealth()
+    public int GetHealth()
     {
         return this.health;
     }
