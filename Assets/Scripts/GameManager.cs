@@ -91,6 +91,8 @@ public class GameManager : MonoBehaviour
                 distance = curDistance;
             }
         }
+        EnemyController ec = closest.GetComponent<EnemyController>();
+        ec.ShowCombo();
         return closest;
     }
 

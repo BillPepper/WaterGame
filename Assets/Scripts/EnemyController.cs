@@ -6,13 +6,13 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private Rigidbody2D ownRigidbody;
-    private BoxCollider2D ownBoxCollider;
+    private SpriteRenderer ComboBubble;
 
     private bool alive;
     private void Start()
     {
         this.ownRigidbody = GetComponent<Rigidbody2D>();
-        this.ownBoxCollider = GetComponent<BoxCollider2D>();
+        this.ComboBubble = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
         this.alive = true;
     }
 
@@ -29,9 +29,15 @@ public class EnemyController : MonoBehaviour
         this.Die();
     }
 
+    public void ShowCombo()
+    {
+        this.ComboBubble.enabled = true;
+    }
+
     public void Die()
     {
         Debug.Log("Enemy" + this.name + " died");
+        this.ComboBubble.enabled = false;
         this.alive = false;
         this.tag = "Dead";
         this.ownRigidbody.AddForce(new Vector2(50, 100));
