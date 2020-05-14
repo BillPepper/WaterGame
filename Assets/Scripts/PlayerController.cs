@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void Hurt(int h)
     {
+        animator.SetTrigger("hurt");
         this.health -= h;
         if (this.health < 1)
         {
