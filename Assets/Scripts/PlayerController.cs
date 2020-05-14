@@ -12,11 +12,12 @@ public class PlayerController : MonoBehaviour
     private bool dead = false;
     private bool finished = false;
     private SpriteRenderer ComboBubble;
-    public Animator animator;
+    private Animator animator;
 
     public void Start()
     {
         this.ComboBubble = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        this.animator = GetComponent<Animator>();
     }
 
     public void FixedUpdate()
