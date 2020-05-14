@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool dead = false;
     private bool finished = false;
     private SpriteRenderer ComboBubble;
+    public Animator animator;
 
     public void Start()
     {
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
     public void ShowCombo(bool s)
     {
         // this should not be set by bool, cause it is not in enemy controller
-        this.ComboBubble.enabled = s;
+        // this.ComboBubble.enabled = s;
     }
 
     public bool IsWalking()
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
     public void SetWalking(bool state)
     {
         this.walking = state;
+        animator.SetBool("isWalking", state);
     }
 
     public bool IsFinished()
