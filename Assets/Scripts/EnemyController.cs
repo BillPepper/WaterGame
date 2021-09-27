@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    //private Rigidbody2D ownRigidbody;
     private SpriteRenderer ComboBubble;
     public string[] combos;
     private Animator animator;
@@ -13,7 +12,6 @@ public class EnemyController : MonoBehaviour
     private bool alive;
     private void Start()
     {
-        //this.ownRigidbody = GetComponent<Rigidbody2D>();
         this.ComboBubble = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
         this.alive = true;
         this.animator = GetComponent<Animator>();
@@ -42,12 +40,5 @@ public class EnemyController : MonoBehaviour
         this.ComboBubble.enabled = false;
         this.alive = false;
         this.tag = "Dead";
-        //this.ownRigidbody.AddForce(new Vector2(-50, 100));
-        //this.ownRigidbody.gravityScale = 1;
-    }
-
-    public bool isAlive()
-    {
-        return this.alive;
     }
 }
