@@ -41,4 +41,11 @@ public class EnemyController : MonoBehaviour
         this.alive = false;
         this.tag = "Dead";
     }
+
+    public bool isAlive()
+    {
+        return this.alive;
+    }
+
+
 }
