@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 2f;
-    public int health = 5;
+    public int maxHealth = 5;
     public float perception = 8f;
 
+    private int health;
     private bool walking = false;
     private bool dead = false;
     private bool finished = false;
@@ -18,13 +19,16 @@ public class PlayerController : MonoBehaviour
     {
         this.ComboBubble = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
         this.animator = GetComponent<Animator>();
+        this.health = this.maxHealth;
     }
 
     public void FixedUpdate()
     {
         if (this.walking)
         {
-            this.transform.position = new Vector2(this.transform.position.x + speed * Time.fixedDeltaTime, this.transform.position.y);
+            float x = this.transform.position.x + speed * Time.fixedDeltaTime;
+            float y = this.transform.position.y;
+            this.transform.position = new Vector2(x, y);
         }
 
         RaycastHit2D hitInfo = Physics2D.Raycast(new Vector2(this.transform.position.x + 0.7f, this.transform.position.y - 0.5f), this.transform.right, this.perception);
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Hurt(int h)
+    public void Hurt(int h)
     {
         animator.SetTrigger("hurt");
         this.health -= h;
@@ -92,5 +96,10 @@ public class PlayerController : MonoBehaviour
     public int GetHealth()
     {
         return this.health;
+    }
+
+    public int getMaxHealth()
+    {
+        return this.maxHealth;
     }
 }

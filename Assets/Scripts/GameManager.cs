@@ -22,14 +22,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        this.UpdateHealth();
         
     }
 
     void Update()
     {
-        this.UpdateHealth();
-
         if (this.NextEnemy)
         {
             NextEnemyController = NextEnemy.GetComponent<EnemyController>();
@@ -101,11 +98,6 @@ public class GameManager : MonoBehaviour
         EnemyController ec = closest.GetComponent<EnemyController>();
         ec.ShowCombo();
         return closest;
-    }
-
-    void UpdateHealth()
-    {
-        Health.SetHealth(Player.GetHealth());
     }
 
     void StartGame()
