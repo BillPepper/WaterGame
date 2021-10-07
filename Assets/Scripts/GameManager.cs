@@ -53,11 +53,25 @@ public class GameManager : MonoBehaviour
         this.HandleInputs();
     }
 
-    void HandleInputs() { 
-        if (Input.GetKeyDown(KeyCode.K) && NextEnemy)
+    void HandleInputs() {
+        if (Input.anyKeyDown)
         {
-            NextEnemy.GetComponent<EnemyController>().Die();
+            KeyCode[] combo = NextEnemyController.GetCombo();
+            int comboLen = combo.Length;
+            int correctInputs = 0;
+            foreach(KeyCode key in combo)
+            {
+                if (Input.GetKey(key))
+                {
+                    correctInputs += 1;
+                }
+            }
+            if (correctInputs == comboLen )
+            {
+                NextEnemyController.Die();
+            }
         }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             this.GameOver();

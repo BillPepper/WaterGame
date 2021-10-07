@@ -258,7 +258,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212969668}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -304,6 +304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93fd360c9385a1429195cbcfb6b9bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 585207682}
+  size: 100
+  margin: 100
+  healthSprites:
+  - {fileID: 21300000, guid: 31b492f2f8fe79d218733b0c86bdbff3, type: 3}
 --- !u!1 &234945675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1138,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
+        type: 3}
+      propertyPath: combos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
+        type: 3}
+      propertyPath: combos.Array.data[0]
+      value: 122
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4d2c138109d5b54aaa1ab545d25a0ea, type: 3}
 --- !u!4 &910009587 stripped
@@ -1213,6 +1228,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
+        type: 3}
+      propertyPath: combos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
+        type: 3}
+      propertyPath: combos.Array.data[0]
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
+        type: 3}
+      propertyPath: combos.Array.data[1]
+      value: 98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4d2c138109d5b54aaa1ab545d25a0ea, type: 3}
@@ -2159,17 +2189,17 @@ PrefabInstance:
     - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
         type: 3}
       propertyPath: combos.Array.data[0]
-      value: t
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
         type: 3}
       propertyPath: combos.Array.data[1]
-      value: t
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 2808763280110868863, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
         type: 3}
       propertyPath: combos.Array.data[2]
-      value: x
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 5016084343985895748, guid: b4d2c138109d5b54aaa1ab545d25a0ea,
         type: 3}

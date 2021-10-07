@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private SpriteRenderer ComboBubble;
-    public string[] combos;
+    public KeyCode[] combos;
     private Animator animator;
 
     private bool alive;
@@ -40,6 +40,11 @@ public class EnemyController : MonoBehaviour
         this.ComboBubble.enabled = false;
         this.alive = false;
         this.tag = "Dead";
+    }
+
+    public KeyCode[] GetCombo()
+    {
+        return this.combos;
     }
 
     public bool isAlive()
